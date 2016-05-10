@@ -56,6 +56,22 @@
 		@endforeach
 	@endif
 	<button id="showtoast" style="display:none;"></button>
+	@if(session()->has('message'))
+		@if(session('msgtype') == 'success')
+			<input type="hidden" value="success" id="msgtype">
+			<input type="hidden" value="{{session('message')}}" id="systemmsg">
+		@elseif(session('msgtype') == 'error')
+			<input type="hidden" value="error" id="msgtype">
+			<input type="hidden" value="{{session('message')}}" id="systemmsg">
+		@elseif(session('msgtype') == 'info')
+			<input type="hidden" value="info" id="msgtype">
+			<input type="hidden" value="{{session('message')}}" id="systemmsg">
+		@elseif(session('msgtype') == 'warning')
+			<input type="hidden" value="warning" id="msgtype">
+			<input type="hidden" value="{{session('message')}}" id="systemmsg">
+		@endif
+		<button id="showtoastsuccess" style="display:none;"></button>
+	@endif
 	<div class="container">
 		@yield('content')
 	</div>

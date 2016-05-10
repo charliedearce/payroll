@@ -17,7 +17,7 @@ elixir(function(mix) {
     mix.styles(["materialize.css","app.css","toastr.css"]);
 
 
-mix.scripts(["materialize.js","app.js","toastr.js"]);
+mix.scripts(["materialize.js","app.js","toastr.js","bootstrap-timepicker.js"]);
 
 
 mix.version(["css/all.css","js/all.js"]);

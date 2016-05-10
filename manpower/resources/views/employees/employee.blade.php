@@ -28,20 +28,35 @@
 					<th>First Name</th>
 					<th>Department</th>
 					<th>Date Hired</th>
-					<th>Employment Status</th>
+					<th>Emp. Status</th>
 				</tr>
 			</thead>
 
 			<tbody>
+			@foreach($employee as $employee)
 				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-					<td><a class="waves-effect waves-teal modal-trigger" href="#modal1"><i class="material-icons">visibility</i></a></td>
+					<td>{{$employee->emp_id}}</td>
+					<td>{{$employee->lastname}}</td>
+					<td>{{$employee->firstname}}</td>
+					<td>{{$employee->department}}</td>
+					<td>{{$employee->startdate}}</td>
+					<td>{{$employee->status}}</td>
+					<td style="font-size:10px;">Edited {{$ago->ago(strtotime($employee->updated_at))}}</td>
+					<td><a class="waves-effect waves-teal modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Work Schedule" href="#{{$employee->id}}"><i class="material-icons">schedule</i></a></td>
+					<td><a class="waves-effect waves-teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit" href="editEmployee/{{$employee->id}}"><i class="material-icons">mode_edit</i></a></td>
+					<td><a class="waves-effect waves-teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="View" href="editEmployee/{{$employee->id}}"><i class="material-icons">visibility</i></a></td>
+					<td><a class="waves-effect waves-teal modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete" href="#{{$employee->id}}"><i class="material-icons">delete</i></a></td>
 				</tr>
+				 <div id="{{$employee->id}}" class="modal" style="max-width:350px;">
+				    <div class="modal-content center">
+				      <p>Are you sure you want to delete this data? <br><br><b>ID: {{$employee->emp_id}} <br> {{$employee->firstname}} <br> {{$employee->lastname}}</b></p>
+				    </div>
+				    <div class="modal-footer">
+				      <a href="deleteEmployee/{{$employee->id}}" class=" modal-action waves-effect btn red left">yes</a>
+				      <a href="#!" class=" modal-action modal-close waves-effect btn green">No</a>
+				    </div>
+				 </div>
+			@endforeach
 			</tbody>
 		</table>
 	</div>
