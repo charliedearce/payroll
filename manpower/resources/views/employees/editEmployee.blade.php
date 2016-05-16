@@ -91,6 +91,9 @@
 		?>
 	@endif
 @endforeach
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+	<a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="left" data-delay="50" data-tooltip="Back" href="/home/employees"><i class="material-icons">replay</i></a>
+</div>
 <form method="POST" action="{{ url('home/updateEmployee') }}/{{$info->id}}" enctype="multipart/form-data">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="row">

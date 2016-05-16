@@ -8,6 +8,9 @@
 		</div>
 	</div>
 </div>
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+	<a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="left" data-delay="50" data-tooltip="Back" href="/home/employees"><i class="material-icons">replay</i></a>
+</div>
 	<div style="width:50%; margin:0 auto;">
 	      <h3 class="center"><img class="responsive-img circle" src="http://materializecss.com/images/yuna.jpg"></h3>
 	      <h5>Employee Information</h5>
@@ -47,7 +50,7 @@
 				<label for="bday">Birth Day</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="civil_status" required>
+				<select name="civil_status">
 			      <option value="" disabled selected>Choose Status</option>
 			      @if (Request::old('civil_status') <> '')
 			      <option value="{{Request::old('civil_status')}}" selected>{{Request::old('civil_status')}}</option>
@@ -109,7 +112,7 @@
 				<label for="minis">De Minimis Total</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="taxcon" required>
+				<select name="taxcon">
 			      <option value="" disabled selected>Choose Contribution</option>
 			      @if (Request::old('taxcon') <> '')
 			      <option value="{{Request::old('taxcon')}}" selected>{{Request::old('taxcon')}}</option>
@@ -119,7 +122,7 @@
 	    		<label>TAX Contribution</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="ssscon" required>
+				<select name="ssscon">
 			      <option value="" disabled selected>Choose Contribution</option>
 			      @if (Request::old('ssscon') <> '')
 			      <option value="{{Request::old('ssscon')}}" selected>{{Request::old('ssscon')}}</option>
@@ -129,7 +132,7 @@
 	    		<label>SSS Contribution</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="philcon" required>
+				<select name="philcon">
 			      <option value="" disabled selected>Choose Contribution</option>
 			      @if (Request::old('philcon') <> '')
 			      <option value="{{Request::old('philcon')}}" selected>{{Request::old('philcon')}}</option>
@@ -139,7 +142,7 @@
 	    		<label>PhilHealth Contribution</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="pagibigcon" required>
+				<select name="pagibigcon">
 			      <option value="" disabled selected>Choose Contribution</option>
 			      @if (Request::old('pagibigcon') <> '')
 			      <option value="{{Request::old('pagibigcon')}}" selected>{{Request::old('pagibigcon')}}</option>
@@ -153,7 +156,7 @@
 	      <div class="divider"></div>
 	      <div class="row">
 	      		<div class="input-field col s6">
-				<select name="branch" required>
+				<select name="branch">
 			      <option value="" disabled selected>Choose Branch</option>
 			      @if (Request::old('branch') <> '')
 			      <option value="{{Request::old('branch')}}" selected>{{Request::old('branch')}}</option>
@@ -167,7 +170,7 @@
 				<label for="pos">Position</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="department" required>
+				<select name="department">
 			      <option value="" disabled selected>Choose Department</option>
 			      @if (Request::old('department') <> '')
 			      <option value="{{Request::old('department')}}" selected>{{Request::old('department')}}</option>
@@ -181,7 +184,7 @@
 				<label for="startdate">Start Date</label>
 			</div>
 			<div class="input-field col s6">
-				<select name="employmentstatus" required>
+				<select name="employmentstatus">
 			      <option value="" disabled selected>Choose Status</option>
 			      @if (Request::old('employmentstatus') <> '')
 			      <option value="{{Request::old('employmentstatus')}}" selected>{{Request::old('employmentstatus')}}</option>

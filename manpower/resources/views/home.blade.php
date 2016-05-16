@@ -78,12 +78,5 @@
 
   	<script type="text/javascript" src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ url(elixir('js/all.js')) }}"></script>
-    
-<script>
-  
-</script>
-
-
-   
 </body>
 </html>

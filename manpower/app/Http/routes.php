@@ -45,6 +45,7 @@ Route::get('/home/deleteEmployee/{emdid}','EmployeeController@deleteEmployee');
 Route::get('/home/employeeSchedule/{emdid}','EmployeeController@EmployeeSchedule');
 Route::post('/home/deleteSchedule/delete','EmployeeController@deleteSchedule');
 Route::post('/home/addSchedule/{day}','EmployeeController@addSchedule');
+Route::get('/home/employees/search','EmployeeController@searchEmployee');
 Route::get('/home/imageEmployee/{filename}', [
 	'uses' => 'EmployeeController@getImage',
 	'as' => 'employee.image']);

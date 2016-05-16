@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Employees;
 use App\scheduleday;
 use App\scheduletime;
@@ -13,13 +12,29 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+use Crypt;
 class EmployeeController extends Controller
 {
     public function employees(){
-    	$employee = Employees::orderBy('updated_at', 'desc')->get();
-        return view('employees/employee')
-        ->with('employee', $employee)
-        ->with('ago', new Timeago);
+        if(isset($_GET['search'])){
+            $search = $_GET['search'];
+            
+
+            $employee = Employees::get()->filter(function($record) use($search) {
+                $pattern =  str_replace('%', '.*', preg_quote('%'. $search .'%', '/'));
+                if(preg_match("/^{$pattern}$/i", $record->firstname) or preg_match("/^{$pattern}$/i", $record->lastname) or preg_match("/^{$pattern}$/i", $record->firstname. " " .$record->lastname) or preg_match("/^{$pattern}$/i", $record->lastname. " " .$record->firstname)) {
+                    return $record;
+                }
+            });
+             return view('employees/employee')
+            ->with('employees', $employee)
+            ->with('ago', new Timeago);
+        }else{
+            $employee = Employees::orderBy('updated_at', 'desc')->paginate(20);
+            return view('employees/employee')
+            ->with('employees', $employee)
+            ->with('ago', new Timeago);
+        }
     }
 
 
@@ -54,11 +69,6 @@ class EmployeeController extends Controller
         'sickleave.numeric'=>'Sick leave can only contain Numeric Characters',
         'vacaleave.numeric'=>'Vacation Leave can only contain Numeric Characters',
         'hourlyrate.numeric'=>'Hourly Rate can only contain Numeric Characters',
-        'banknum.numeric'=>'Bank number can only contain Numeric Characters',
-        'tinnum.numeric'=>'TIN number can only contain Numeric Characters',
-        'philnum.numeric'=>'Philhealth number can only contain Numeric Characters',
-        'sssnum.numeric'=>'SSS number can only contain Numeric Characters',
-        'pagibignum.numeric'=>'PAG-IBIG number can only contain Numeric Characters',
         'dependent1.regex'=>'Dependent-1 name can only contain Alpha Characters',
         'dependent2.regex'=>'Dependent-2 name can only contain Alpha Characters',
         'dependent3.regex'=>'Dependent-3 name can only contain Alpha Characters',
@@ -78,6 +88,11 @@ class EmployeeController extends Controller
         'dependent2.max'=>'Dependent-2 name can only contain :max Characters',
         'dependent3.max'=>'Dependent-3 name can only contain :max Characters',
         'dependent4.max'=>'Dependent-3 name can only contain :max Characters',
+        'banknum.max'=>'Bank number can only contain :max Characters',
+        'tinnum.max'=>'TIN number can only contain :max Characters',
+        'philnum.max'=>'Philhealth number can only contain :max Characters',
+        'sssnum.max'=>'SSS number can only contain :max Characters',
+        'pagibignum.max'=>'PAG-IBIG number can only contain :max Characters',
     );
 
     $rules = array(
@@ -103,11 +118,11 @@ class EmployeeController extends Controller
         'sickleave'=>'numeric|max:500',
         'vacaleave'=>'numeric|max:500',
         'hourlyrate'=>'numeric|max:50000',
-        'banknum'=>'numeric',
-        'tinnum'=>'numeric',
-        'philnum'=>'numeric',
-        'sssnum'=>'numeric',
-        'pagibignum'=>'numeric',
+        'banknum'=>'max:50',
+        'tinnum'=>'max:50',
+        'philnum'=>'max:50',
+        'sssnum'=>'max:50',
+        'pagibignum'=>'max:50',
         'dependent1'=>'Regex:/^([A-Za-z\s]+$)+/|max:50',
         'dependent2'=>'Regex:/^([A-Za-z\s]+$)+/|max:50',
         'dependent3'=>'Regex:/^([A-Za-z\s]+$)+/|max:50',
@@ -176,14 +191,16 @@ class EmployeeController extends Controller
         $employee->banknum = $request->input('banknum');
         $employee->save();
         
-        for ($x = 1; $x <= 2; $x++) {
+        for ($x = 0; $x <= 2; $x++) {
             $scheduleday = new scheduleday;
             $scheduleday->user_id = '1';
             $scheduleday->emp_id = $employee->id;
             $scheduleday->shift = $x;
             $scheduleday->save();
         }
-        return redirect()->back();
+        return redirect::to('home/employees')
+            ->with('message', 'Employee data Successfully added.')
+            ->with('msgtype', 'success');
     }
 
 
@@ -237,11 +254,6 @@ class EmployeeController extends Controller
         'sickleave.numeric'=>'Sick leave can only contain Numeric Characters',
         'vacaleave.numeric'=>'Vacation Leave can only contain Numeric Characters',
         'hourlyrate.numeric'=>'Hourly Rate can only contain Numeric Characters',
-        'banknum.numeric'=>'Bank number can only contain Numeric Characters',
-        'tinnum.numeric'=>'TIN number can only contain Numeric Characters',
-        'philnum.numeric'=>'Philhealth number can only contain Numeric Characters',
-        'sssnum.numeric'=>'SSS number can only contain Numeric Characters',
-        'pagibignum.numeric'=>'PAG-IBIG number can only contain Numeric Characters',
         'dependent1.regex'=>'Dependent-1 name can only contain Alpha Characters',
         'dependent2.regex'=>'Dependent-2 name can only contain Alpha Characters',
         'dependent3.regex'=>'Dependent-3 name can only contain Alpha Characters',
@@ -261,6 +273,11 @@ class EmployeeController extends Controller
         'dependent2.max'=>'Dependent-2 name can only contain :max Characters',
         'dependent3.max'=>'Dependent-3 name can only contain :max Characters',
         'dependent4.max'=>'Dependent-3 name can only contain :max Characters',
+        'banknum.max'=>'Bank number can only contain :max Characters',
+        'tinnum.max'=>'TIN number can only contain :max Characters',
+        'philnum.max'=>'Philhealth number can only contain :max Characters',
+        'sssnum.max'=>'SSS number can only contain :max Characters',
+        'pagibignum.max'=>'PAG-IBIG number can only contain :max Characters',
     );
 
     $rules = array(
@@ -286,11 +303,11 @@ class EmployeeController extends Controller
         'sickleave'=>'numeric|max:500',
         'vacaleave'=>'numeric|max:500',
         'hourlyrate'=>'numeric|max:50000',
-        'banknum'=>'numeric',
-        'tinnum'=>'numeric',
-        'philnum'=>'numeric',
-        'sssnum'=>'numeric',
-        'pagibignum'=>'numeric',
+        'banknum'=>'max:50',
+        'tinnum'=>'max:50',
+        'philnum'=>'max:50',
+        'sssnum'=>'max:50',
+        'pagibignum'=>'max:50',
         'dependent1'=>'Regex:/^([A-Za-z\s]+$)+/|max:50',
         'dependent2'=>'Regex:/^([A-Za-z\s]+$)+/|max:50',
         'dependent3'=>'Regex:/^([A-Za-z\s]+$)+/|max:50',
@@ -378,10 +395,19 @@ class EmployeeController extends Controller
 
     public function deleteEmployee($empid){
         $employee = Employees::where('id','=', $empid)->where('user_id', '=', 1)->first();
-        if(Storage::disk('local')->exists($employee->path)){
-            Storage::disk('local')->Delete($employee->path);
-        } 
-        $employee->delete();
+            if ($employee->path <> ('' or null)){
+                        if(Storage::disk('local')->exists($employee->path)){
+                            Storage::disk('local')->Delete($employee->path);
+                            $employee->delete();
+                }else{
+                    $employee->delete();
+                }
+            }
+        
+        $scheduleday = scheduleday::where('emp_id','=', $empid)->where('user_id', '=', 1);
+        $scheduleday->delete();
+        $scheduletime = scheduletime::where('emp_id','=', $empid);
+        $scheduletime->delete();
         return redirect::to('home/employees')
             ->with('message', 'Employee data Successfully deleted.')
             ->with('msgtype', 'success');
@@ -626,6 +652,25 @@ class EmployeeController extends Controller
                 ->with('msgtype', 'error');
             }
         }
+
+        public function autocompleteEmployee(Request $request){
+            $search = $request->search;
+            $employee = Employees::where('firstname','LIKE','%'. $search .'%')->take(10)->get();
+            $result = array();
+            foreach ($employee as $key => $v) {
+                $result[]=['id'=>$v->id,'value'=>$v->firstname];
+            }
+            return Response()->json($result);
+        }
+        public function employeeFilter(Request $request){
+         $employee = Employees::where('firstname','LIKE','%'. $search .'%')->take(10)->get();
+        return view('employees/employee')
+        ->with('employees', $employee)
+        ->with('ago', new Timeago);
+    }
+         public function searchEmployee() {
+        
+    }
 }
 
 class Timeago {

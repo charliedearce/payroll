@@ -90,7 +90,10 @@ $('#hehe').click(function () {
 $(document).ready(function(e){
 $("#showtoast").trigger('click');
 $("#showtoastsuccess").trigger('click');
+
 });
+
+
 
 //time picker
 $(document).ready(function() {

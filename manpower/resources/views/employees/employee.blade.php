@@ -1,20 +1,22 @@
 @extends('home')
 @section('content')
-
-
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+	<a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="left" data-delay="50" data-tooltip="New Employee" href="/home/addEmployee"><i class="material-icons">note_add</i></a>
+</div>
 <div class="row">
 	<div class="col s12">
 		<div class="card-panel hoverable" style="background-image:url('http://materializecss.com/images/sample-1.jpg'); width: 100%; height: 100%;"><h3 class="white-text">Employees</h3>
 		</div>
 	</div>
-</div>
+
 <div class="row">
-	<form method="POST" action="hellow">
-		<div class="input-field col s12 left">
-	          <input id="last_name" type="text" class="validate" style="width:300px; max-width: 85%;">
+	<form method="GET" action="{{ url('home/employees') }}">
+
+		<div class="input-field col s12">
+	          <input id="search" type="text" class="validate" style="width:300px; max-width: 85%;" name="search">
 	          <button class="btn-floating btn-small waves-effect waves-light red" type="submit">
 	          <i class="material-icons">search</i></button>
-	          <label for="last_name">Search by: ID, First Name, Last Name</label>
+	          <label for="search">Search by: First Name or Last Name</label>
 	    </div>
 	</form>
 </div>
@@ -33,7 +35,7 @@
 			</thead>
 
 			<tbody>
-			@foreach($employee as $employee)
+			@foreach($employees as $employee)
 				<tr>
 					<td>{{$employee->emp_id}}</td>
 					<td>{{$employee->lastname}}</td>
@@ -42,7 +44,7 @@
 					<td>{{$employee->startdate}}</td>
 					<td>{{$employee->status}}</td>
 					<td style="font-size:10px;">Edited {{$ago->ago(strtotime($employee->updated_at))}}</td>
-					<td><a class="waves-effect waves-teal modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Work Schedule" href="#{{$employee->id}}"><i class="material-icons">schedule</i></a></td>
+					<td><a class="waves-effect waves-teal modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Work Schedule" href="employeeSchedule/{{$employee->id}}"><i class="material-icons">schedule</i></a></td>
 					<td><a class="waves-effect waves-teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit" href="editEmployee/{{$employee->id}}"><i class="material-icons">mode_edit</i></a></td>
 					<td><a class="waves-effect waves-teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="View" href="editEmployee/{{$employee->id}}"><i class="material-icons">visibility</i></a></td>
 					<td><a class="waves-effect waves-teal modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete" href="#{{$employee->id}}"><i class="material-icons">delete</i></a></td>
@@ -60,5 +62,20 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+<div class="row center">
+	@if(count($employees) <= 0)
+		<a href="employees"><h4>No results found.</h4> <br> Back <br><i class="material-icons">replay</i></a>
+	@endif
+	<ul class="pagination">
+	@if(isset($_GET['search']))
+		@if(count($employees) != 0)
+		<a href="employees"><h4>{{count($employees)}} results found.</h4> <br> Back <br><i class="material-icons">replay</i></a>
+	@endif
+	@else
+	{{$employees->links()}}
+	@endif
+	   
+  </ul>
 </div>
 @endsection
