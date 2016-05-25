@@ -500,14 +500,18 @@ class EmployeeController extends Controller
                 ->with('msgtype', 'error');
             }else{
             $scheduletime = new scheduletime;
+            $in = date("H:i", strtotime($request->input('in')));
+            $out = date("H:i", strtotime($request->input('out')));
+            $bin = date("H:i", strtotime($request->input('bin')));
+            $bout = date("H:i", strtotime($request->input('bout')));
             if($day == 'su1'){
                 $scheduletime->day = 1;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Sunday (day shift) Schedule Successfully added.')
@@ -516,10 +520,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 2;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Monday (day shift) Schedule Successfully added.')
@@ -528,10 +532,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 3;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Tuesday (day shift) Schedule Successfully added.')
@@ -540,10 +544,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 4;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Wednesday (day shift) Schedule Successfully added.')
@@ -552,10 +556,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 5;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Thursday (day shift) Schedule Successfully added.')
@@ -564,10 +568,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 6;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Friday (day shift) Schedule Successfully added.')
@@ -576,10 +580,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 7;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Saturday (day shift) Schedule Successfully added.')
@@ -589,10 +593,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 1;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Sunday (night shift) Schedule Successfully added.')
@@ -601,10 +605,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 2;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Monday (night shift) Schedule Successfully added.')
@@ -613,10 +617,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 3;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Tuesday (night shift) Schedule Successfully added.')
@@ -625,10 +629,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 4;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Wednesday (night shift) Schedule Successfully added.')
@@ -637,10 +641,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 5;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Thursday (night shift) Schedule Successfully added.')
@@ -649,10 +653,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 6;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Friday (night shift) Schedule Successfully added.')
@@ -661,10 +665,10 @@ class EmployeeController extends Controller
                 $scheduletime->day = 7;
                 $scheduletime->sched_id = $request->input('sched_id');
                 $scheduletime->emp_id = $request->input('empid');
-                $scheduletime->in = $request->input('in');
-                $scheduletime->out = $request->input('out');
-                $scheduletime->breakin = $request->input('bin');
-                $scheduletime->breakout = $request->input('bout');
+                $scheduletime->in = $in;
+                $scheduletime->out = $out;
+                $scheduletime->breakin = $bin;
+                $scheduletime->breakout = $bout;
                 $scheduletime->save();
             return redirect()->back()
                 ->with('message', 'Saturday (night shift) Schedule Successfully added.')

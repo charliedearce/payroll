@@ -53,16 +53,16 @@
 					{{$atten->shift}}
 					</td>
 					<td>
-					{{$atten->in}}
+					{{date('h:i A', strtotime($atten->in))}}
 					</td>
 					<td>
-					{{$atten->breakout}}
+					{{date('h:i A', strtotime($atten->breakout))}}
 					</td>
 					<td>
-					{{$atten->breakin}}
+					{{date('h:i A', strtotime($atten->breakin))}}
 					</td>
 					<td>
-					{{$atten->out}}
+					{{date('h:i A', strtotime($atten->out))}}
 					</td>
 					<td>
 					{{$atten->overtime}}
@@ -94,17 +94,17 @@
 								<label for="att-in">Time In:</label>
 							  </div>
 							  <div class="input-field col s6">
-								<input id="att-bout" type="text" class="validate" value="00:00 PM" name="bin" required>
-								<label for="att-bout">Break Out:</label>
-							  </div>
-							  <div class="input-field col s6">
-								<input id="att-bin" type="text" class="validate" value="00:00 PM" name="bout" required>
-								<label for="att-bin">Break In:</label>
-							  </div>
-							  <div class="input-field col s6">
 								<input id="att-out" type="text" class="validate" value="00:00 PM" name="out" required>
 								<label for="att-out">Time Out:</label>
 							  </div>
+							  <div class="input-field col s6">
+								<input id="att-bout" type="text" class="validate" value="00:00 PM" name="bout" required>
+								<label for="att-bout">Break Out:</label>
+							  </div>
+							  <div class="input-field col s6">
+								<input id="att-bin" type="text" class="validate" value="00:00 PM" name="bin" required>
+								<label for="att-bin">Break In:</label>
+							  </div>  
 					    </div>
 					    <div class="modal-footer">
 					      <button class=" modal-action waves-effect btn red left">yes</button>
